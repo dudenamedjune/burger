@@ -1,51 +1,64 @@
-<h1>Burgers!</h1>
 
-<h2>Burgers you can still clog your arteries with!</h2>
+<div class="row ">
 
-<ul>
-  {{#each burgers}}
-    {{#unless this.devoured}}
-      <li>
-        {{this.name}}
+  <div class="col s3 ">
 
-        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">Eat me fatty!</button>
-        </form>
 
-        {{> burgers/delete-burger}}
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
+    <h2 class="flow-text">Add a New burger</h2>
+    <form class="create-update-form blue-grey darken-2" action="burgers/create" method="POST">
 
-<h2>Burgers that you should probably puke up later!</h2>
+      <div class="form-group">
+        <label for="bu">Burger Name:</label>
+        <input type="text" id="bu" name="name">
+      </div>
 
-<ul>
-  {{#each burgers}}
-    {{#if this.devoured}}
-      <li>
-        {{this.name}}
 
-        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button type="submit">Make that burger again, I want to devolpe type 2!</button>
-        </form>
-
-        {{> burgers/delete-burger}}
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a New burger</h2>
-<form class="create-update-form" action="burgers/create" method="POST">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+      <button type="submit">Add Burger</button>
+    </form>
   </div>
+  <div class="col s5">
 
 
-  <button type="submit">Add Burger</button>
-</form>
+
+    <h2 class="flow-text">Burgers you can still clog your arteries with!</h2>
+
+    <ul>
+      {{#each burgers}}
+        {{#unless this.devoured}}
+          <li class="blue-grey lighten-3">
+            {{this.name}}
+
+            <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="devoured" value="true">
+              <button type="submit">Eat me fatty!</button>
+            </form>
+
+            {{> burgers/delete-burger}}
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="col s4">
+
+    <h2 class="flow-text">Burgers that you should probably puke up later!</h2>
+
+    <ul>
+      {{#each burgers}}
+        {{#if this.devoured}}
+          <li class="blue-grey lighten-3">
+            {{this.name}}
+
+            <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="devoured" value="false">
+              <button type="submit">Make that burger again, I want to devolpe type 2!</button>
+            </form>
+
+            {{> burgers/delete-burger}}
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+    </div>
+
+</div>
