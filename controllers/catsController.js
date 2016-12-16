@@ -6,30 +6,30 @@ var cat = require("../models/cat.js");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-  res.redirect("/cats");
+  res.redirect("/burgers");
 });
 
-router.get("/cats", function(req, res) {
+router.get("/burgers", function(req, res) {
   cat.all(function(data) {
     var hbsObject = {
-      cats: data
+      burgers: data
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
 
-router.post("/cats/create", function(req, res) {
+router.post("/burgers/create", function(req, res) {
   cat.create([
     "name"
   ], [
     req.body.name,
   ], function() {
-    res.redirect("/cats");
+    res.redirect("/burgers");
   });
 });
 
-router.put("/cats/update/:id", function(req, res) {
+router.put("/burgers/update/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
@@ -37,15 +37,15 @@ router.put("/cats/update/:id", function(req, res) {
   cat.update({
     devoured: req.body.devoured
   }, condition, function() {
-    res.redirect("/cats");
+    res.redirect("/burgers");
   });
 });
 
-router.delete("/cats/delete/:id", function(req, res) {
+router.delete("/burgers/delete/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   cat.delete(condition, function() {
-    res.redirect("/cats");
+    res.redirect("/burgers");
   });
 });
 
