@@ -1,0 +1,51 @@
+<h1>Burgers!</h1>
+
+<h2>Burgers you can still clog your arteries with!</h2>
+
+<ul>
+  {{#each cats}}
+    {{#unless this.devoured}}
+      <li>
+        {{this.name}}
+
+        <form action="cats/update/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit">Eat me fatty!</button>
+        </form>
+
+        {{> cats/delete-cat}}
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>Burgers that you should probably puke up later!</h2>
+
+<ul>
+  {{#each cats}}
+    {{#if this.devoured}}
+      <li>
+        {{this.name}}
+
+        <form action="cats/update/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="false">
+          <button type="submit">Make that burger again, I want to devolpe type 2!</button>
+        </form>
+
+        {{> cats/delete-cat}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a New burger</h2>
+<form class="create-update-form" action="cats/create" method="POST">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+
+  <button type="submit">Add Cat</button>
+</form>
